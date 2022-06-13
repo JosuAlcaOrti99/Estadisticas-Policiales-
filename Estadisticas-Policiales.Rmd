@@ -1,0 +1,41 @@
+---
+title: "Estadisticas policiales"
+author: "Patrick Alcazar"
+date: '2022-06-13'
+output: html_document
+---
+
+## tabla de datos
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(plotly)
+library(readr)
+library(dplyr)
+library(DT)
+
+
+
+Datos_Policiales <-
+  readxl::read_excel("C:/Users/gf0604-1/Downloads/estadisticaspoliciales2021.xls")
+
+# Visualización de datos nacionales policiales en formato tabular
+Datos_Policiales %>%
+  datatable(options = list(
+    pageLength = 5,
+    language = list(url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json')
+  ))
+```
+## gráfico delitos por tipo de delito 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## gráfico delitos por mes del año 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## gráfico de barras agrupadas barra por tipo de delito
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Cantidad de delitos para los cantones de San José, Alajuela, Cartago y Heredia
