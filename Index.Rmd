@@ -1,0 +1,59 @@
+---
+title: "Estadisticas policiales"
+author: "Patrick Alcazar"
+date: '2022-06-13'
+output: 
+html_document:
+  code_folding: hide
+  theme: readable
+  toc: true
+  toc_depth: 5
+  toc_float:
+      collapsed: false
+      smooth_scroll: false
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## tabla de datos
+```{r, message=FALSE, echo=FALSE}
+
+library(ggplot2)
+library(plotly)
+library(readr)
+library(dplyr)
+library(DT)
+
+```
+
+```{r, message=FALSE, echo=FALSE}
+
+Datos_Policiales <-
+  readxl::read_excel("C:/Users/Josue Alcazar/Desktop/R Tareas/Estadisticas-Policiales-/estadisticaspoliciales2021.xls") %>%
+  select("Delito", "Fecha", "Victima", "Edad", "Genero", "Provincia", "Canton") %>%
+  mutate(Fecha = as.Date(Fecha, format = "%d/%m/%Y"))
+
+```
+
+```{r}
+colnames(Datos_Policiales) <-
+           c("Delito", "Fecha", Víctima = "Victima", "Edad", Género = "Genero", "Provincias", Cantón= "Canton")
+
+```
+
+```{r, message=FALSE, echo=FALSE}
+
+# Visualización de datos nacionales policiales en formato tabular
+Datos_Policiales_Tabulados <-
+Datos_Policiales %>%
+  datatable(options = list(
+    pageLength = 10,
+    locale = locale(encoding = "WINDOWS-1252"),
+    language = list(url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json')))
+
+  View(Datos_Policiales_Tabulados)
+```
+
+
